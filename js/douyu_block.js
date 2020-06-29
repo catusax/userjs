@@ -22,6 +22,11 @@
         "[href='/64609']",
         appendImageNumber
     );
+
+    waitForKeyElements (
+        "[href='/2150596']",
+        appendImageNumber
+    );
     function appendImageNumber (jNode) {
         jNode.parents (".layout-Cover-item").remove();
     };
