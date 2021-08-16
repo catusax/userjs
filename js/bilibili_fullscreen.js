@@ -14,7 +14,12 @@
 
     // Your code here...
     hotkeys('esc', function() {
+      try{
         document.querySelector(".bilibili-player-video-web-fullscreen").click();
+      }
+      catch (e) {
+        document.querySelector(".squirtle-video-pagefullscreen").click()
+      }
         return false;//屏蔽其他event
     });
 
