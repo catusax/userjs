@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         斗鱼屏蔽SB
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @include	     *douyu.com*
@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    //在这里增加要屏蔽的直播间号码
+    //在这里增加要屏蔽的直播间号码，右键直播间卡片复制网址，斗鱼直播间链接格式为为 https://www.douyu.com/123456 或者 https://www.douyu.com/xxxxxx，只要把域名后面的数字填进去就行
     var sb = ["6567483","246195","64609","2150596","234544","8948464","8948464","59889","943298","339610"];
     
     sb.forEach((value)=>{
