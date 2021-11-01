@@ -5,36 +5,33 @@
 // @description  try to take over the world!
 // @author       You
 // @include	     *douyu.com*
-// @grant        GM_addStyle
+// @grant        GM.addStyle
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js
 // ==/UserScript==
 
 
 (function() {
     'use strict';
-    waitForKeyElements (
-        "[href='/6567483']",
-        appendImageNumber
-    );
 
-    //无限复制下面这段代码，更改其中的房间号，即可屏蔽多个SB
-    waitForKeyElements (
-        "[href='/64609']",
-        appendImageNumber
-    );
+    //在这里增加要屏蔽的直播间号码
+    var sb = ["6567483","246195","64609","2150596","234544","8948464","8948464","59889","943298","339610"];
+    
+    sb.forEach((value)=>{
+        waitForKeyElements (
+            "[href='/" +value+"']",
+            appendImageNumber
+        );
+    })
 
-    waitForKeyElements (
-        "[href='/2150596']",
-        appendImageNumber
-    );
     function appendImageNumber (jNode) {
         jNode.parents (".layout-Cover-item").remove();
     };
 
 
+  
     // Your code here...、
     //优化网页全屏UI
-    GM_addStyle( ` body.is-fullScreenPage .layout-Player-video {
+    GM.addStyle( ` body.is-fullScreenPage .layout-Player-video {
                        bottom: 44px;height: auto;
                    }
                    body.is-fullScreenPage .layout-Player-toolbar {
@@ -136,3 +133,4 @@ function waitForKeyElements (
     }
     waitForKeyElements.controlObj   = controlObj;
 }
+
