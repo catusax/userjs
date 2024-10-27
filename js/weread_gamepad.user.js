@@ -5,6 +5,7 @@
 // @grant       none
 // @version     1.0
 // @author      -
+// @license     GPL 3.0
 // @description 使用xbox 游戏手柄控制微信读书翻页和滚动
 // ==/UserScript==
 
