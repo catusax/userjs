@@ -3,10 +3,11 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://weread.qq.com/web/reader/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      -
 // @license     GPL 3.0
-// @description 使用xbox 游戏手柄控制微信读书翻页和滚动
+// @description 使用xbox 游戏手柄控制微信读书翻页、滚动、全屏
+// @update        update v1.1 增加Y切换全屏功能
 // ==/UserScript==
 
 var gamepadAPI = {
@@ -113,15 +114,6 @@ var gamepadAPI = {
         let next = () => document.querySelector(".renderTarget_pager_button_right").click()
         let prev = () => document.querySelector(".renderTarget_pager_button:not(.renderTarget_pager_button_right)").click()
 
-        let keyboard_down_press = () => {
-            var event = new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: "ArrowDown", code: 40 });
-            document.dispatchEvent(event);
-        }
-
-        let keyboard_down_release = () => {
-            var event = new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: "ArrowDown", code: 40 });
-            document.dispatchEvent(event);
-        }
 
         gamepadAPI.job = setInterval(() => {
             gamepadAPI.update()
@@ -138,6 +130,41 @@ var gamepadAPI = {
 
             if (gamepadAPI.buttonPressed('B').pressed) {
                 prev();
+            }
+
+            if (gamepadAPI.buttonPressed('Y').pressed) {
+                function toggleFullScreen() {
+                    if (!document.fullscreenElement &&    // 标准方法
+                        !document.mozFullScreenElement && // Firefox
+                        !document.webkitFullscreenElement && // Chrome, Safari and Opera
+                        !document.msFullscreenElement) {  // IE/Edge
+                
+                        // 请求全屏
+                        if (document.documentElement.requestFullscreen) {
+                            document.documentElement.requestFullscreen();
+                        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                            document.documentElement.mozRequestFullScreen();
+                        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                            document.documentElement.webkitRequestFullscreen();
+                        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                            document.documentElement.msRequestFullscreen();
+                        }
+                    } else {
+                        // 退出全屏
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) { // Firefox
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) { // IE/Edge
+                            document.msExitFullscreen();
+                        }
+                    }
+                }
+                
+                // 调用函数
+                toggleFullScreen();
             }
 
             if (gamepadAPI.buttonPressed('DPad-Up').pressed) {
