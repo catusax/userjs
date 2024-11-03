@@ -5,11 +5,12 @@
 // @grant       GM_addStyle
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.1
+// @version     1.2
 // @author      -
 // @license     GPL 3.0
 // @description 使用xbox 游戏手柄控制微信读书翻页、滚动、全屏
 // @update        update v1.1 增加Y切换全屏功能
+// @update        update v1.2 增加LB RB 切换主题，X切换亮度功能
 // ==/UserScript==
 
 var gamepadAPI = {
